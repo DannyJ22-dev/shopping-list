@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="item">Item: </label>
+    <input type="text" id ="itemid" name="item" placeholder="Enter your item" ><br>
+    <input type="button" id="addButton" name="addButton" value ="add item">
+    <section>
+        <ul id="shoppingList"></ul>
+        <label id="removeButton"></label>
+    </section>
+    
+
+
+</body>
+<script>
+    const item = document.getElementById("itemid");
+    const addButton = document.getElementById("addButton");
+    const shoppingList = document.getElementById("shoppingList");
+    const removeButtonLabel = document.getElementById("removeButton");
+
+    addButton.onclick = function(){
+        console.log(item.value);
+        const itemElement = document.createElement("li");
+        itemElement.textContent = item.value;
+        //console.log(itemElement);
+        shoppingList.appendChild(itemElement);
+        item.value = "";
+        let removeButton = document.createElement("button");
+        removeButton.textContent = "remove from cart";
+        //console.log(removeButton);
+        shoppingList.appendChild(removeButton)
+        let editButton = document.createElement("button");
+        editButton.textContent = "edit";
+        shoppingList.appendChild(editButton)
+       // item.appendChild(itemElement)
+        removeButton.onclick = function(){
+            itemElement.remove();
+            removeButton.remove();
+            editButton.remove();
+        }
+        editButton.onclick = function(){
+            let newValue = prompt("Edit:", itemElement.firstChild.textContent);
+            itemElement.firstChild.textContent = newValue;
+        }
+    }
+    
+</script>
+</html>
